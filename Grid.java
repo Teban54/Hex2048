@@ -8,8 +8,12 @@ public class Grid {
     private Tile[][] tiles;
     private boolean[][] justMerged;
     private ArrayList<Point>[] startPoints = new ArrayList[6];  // Starting points for collection of tiles
+
     private int goal;
     private boolean finished;
+    private int totalCount;
+
+    private Random myRandom;
 
     public Grid(int n, int target) {
         size = n;  // 5
@@ -18,12 +22,20 @@ public class Grid {
         justMerged = new boolean[actualSize][actualSize];  // Prevent the case of 8,4,2,2 where a tile that's just merged is merged with another tile
         computeStartPoints();
         goal = target;  // Stored in power of 2 (e.g. 11 for 2048)
+        myRandom = new Random();
     }
     public int getSize() {
         return size;
     }
     public int getGoal() {
         return goal;
+    }
+    public int getTotal() {
+        return totalCount;
+    }
+    public int getMaxGrids() {
+        // Pure math. Thanks Prof Astrachan for plustorial
+        return (size*3-1)*size/2 + (size*3-2)*(size-1)/2;
     }
     
     // Coordinate operations
@@ -53,17 +65,17 @@ public class Grid {
     public Point tile2point(Tile tile) {
         return tile.getPos();
     }
-    protected Point moveInDir(Point pos, int dir) {
+    protected Point moveInDir(Point pos, int dir) {  // This might be out of bounds or already full.
         return new Point(pos.x + dirVec[dir][0], pos.y + dirVec[dir][1]);
     }
-    protected Point moveInDirToEnd(Point pos, int dir) {  // Stops at another block or end of grid
-        Point pt = pos;
-        Point pt_prev = null;
-        while (inBound(pt) && (getTile(pt) == null)) {
+    protected Point moveInDirToEnd(Point pos, int dir) {  // Move pointer all the way, stops at another block or end of grid
+        Point pt = moveInDir(pos, dir);
+        Point pt_prev = pos;
+        while (isEmpty(pt)) {
             pt_prev = pt;
             pt = moveInDir(pt, dir);
         }
-        return pt;
+        return pt_prev;
     }
     public boolean isEmpty(Point pos) {
         return inBound(pos) && (tiles[pos.x][pos.y] == null);
@@ -85,6 +97,21 @@ public class Grid {
         }
         Tile t = new Tile(pos, value);
         tiles[pos.x][pos.y] = t;
+        totalCount++;
+    }
+    public void createRandomTile() {
+        if (isFull())
+            return;
+        List<Point> vacantCells = new LinkedList<>();
+        for (int i=0; i<actualSize; i++)
+            for (int j=0; j<actualSize; j++)
+                if (isEmpty(new Point(i, j)))
+                    vacantCells.add(new Point(i, j));
+
+        int val = 1;  // 2
+        if (myRandom.nextDouble() <= 0.2)
+            val = 2;  // 4
+        createTile(vacantCells.get(myRandom.nextInt(vacantCells.size())), val);
     }
     public void removeTile(Point pos) {
         if (getTile(pos) == null) {
@@ -96,6 +123,7 @@ public class Grid {
     }
     public void removeTile(Tile tile) {  // Just in case
         removeTile(tile.getPos());
+        totalCount--;
     }
     public void moveTileTo(Point start, Point end) {
         if (getTile(start) == null) {
@@ -208,10 +236,6 @@ public class Grid {
             return;
         Tile t = getTile(pos);
         Point dest = moveInDirToEnd(pos, dir);
-        if (dest == null) {
-            // Exception
-            return;
-        }
         moveTileTo(pos, dest);
         if (mergeable(dest, dir))
             merge(dest, dir);
@@ -225,20 +249,56 @@ public class Grid {
             pushOneTile(tile, dir);
     }
     public void swipe(int dir) {
+        if (!canSwipeInDir(dir)) {
+            if (isLost())
+                lose();
+            return;
+        }
         boolean alreadyWon = finished;
         for (int i=0; i<actualSize; i++)
             Arrays.fill(justMerged[i], false);
         for (List<Tile> list : organizeByTiles(dir))
             pushTilesInOrder(list, dir);
+
+        if (!isFull())
+            createRandomTile();
+
         if (alreadyWon ^ finished)
             win();
     }
+    public boolean canSwipeInDir(int dir) {  // Check whether the swipe is allowed (i.e. at least 1 tile can be moved or merged)
+        for (int i=0; i<actualSize; i++)
+            for (int j=0; j<actualSize; j++)
+                if (tiles[i][j] != null) {
+                    Point pt = new Point(i, j);
+                    if (!moveInDirToEnd(pt, dir).equals(pt) || mergeable(pt, dir))
+                        return true;
+                }
+        return false;
+    }
 
-    // Methods related to completing the game
+    // Methods related to ending the game
     public void win() {
         // TODO (Graphics)
     }
     public boolean isFinished() {
         return finished;
+    }
+    public void lose() {
+        // TODO (Graphics)
+    }
+    public boolean isFull() {
+        return totalCount >= getMaxGrids();
+    }
+    public boolean isLost() {
+        if (!isFull())
+            return false;
+        for (int i=0; i<actualSize; i++)
+            for (int j=0; j<actualSize; j++)
+                if (tiles[i][j] != null)
+                    for (int k=0; k<6; k++)
+                        if (mergeable(new Point(i,j), k))
+                            return false;
+        return true;
     }
 }
