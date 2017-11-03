@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Hex2048</string>
+    <string name="sampleButtonText">Button 1</string>
+</resources>
