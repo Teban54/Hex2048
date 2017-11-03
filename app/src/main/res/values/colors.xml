@@ -6,7 +6,7 @@
 
     <!-- Reference: https://stackoverflow.com/questions/7378636/setting-background-colour-of-android-layout-element -->
     <color name="defaultBackground">#FBF8EF</color>
-    <color name="defaultGreyText">#776E67</color>  <!-- Title, mode description, tiles 2 & 4 -->
+    <color name="defaultGreyText">#776E67</color>  <!-- Title, mode description -->
     <color name="defaultLightGreyText">#F1E5D7</color>  <!-- "Score" in score box -->
     <color name="defaultWhiteText">#FFFFFF</color>  <!-- Scores, tiles except 2 & 4 -->
     <color name="defaultBlackText">#776F64</color>  <!-- Tiles 2 & 4 -->

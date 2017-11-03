@@ -3,4 +3,6 @@
     <string name="sampleButtonText">Button 1</string>
     <string name="Hex">HEX</string>
     <string name="gameTitle">2048</string>
+    <string name="classicDescriptionName">Classic mode: </string>
+    <string name="classicDescription">Join the numbers and get to the 2048 tile!</string>
 </resources>

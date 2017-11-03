@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         tx.setTypeface(custom_font);
         tx = (TextView)findViewById(R.id.gameLogo);
         tx.setTypeface(custom_font);
+        tx = (TextView)findViewById(R.id.modeName);
+        tx.setTypeface(custom_font);
+
+        Typeface custom_font_regular = Typeface.createFromAsset(getAssets(),  "fonts/ClearSans-Regular.ttf");
+        tx = (TextView)findViewById(R.id.modeDescription);
+        tx.setTypeface(custom_font_regular);
     }
 
     @Override

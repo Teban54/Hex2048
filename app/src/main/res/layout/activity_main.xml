@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="teban54.hex2048.MainActivity">
+    tools:context="teban54.hex2048.MainActivity"
+    android:background="@color/defaultBackground">
 
     <!--<Button
         android:id="@+id/sampleButton"
@@ -30,7 +31,7 @@
         tools:layout_editor_absoluteX="0dp" />-->
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/backgroundBackup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -38,23 +39,82 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
+    <ImageView
+        android:id="@+id/betsScoreContainer"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundBackup"
+        app:srcCompat="@drawable/scorecontainer" />
+
+    <ImageView
+        android:id="@+id/scoreContainer"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundBackup"
+        app:srcCompat="@drawable/scorecontainer" />
+
     <TextView
         android:id="@+id/gameLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="@string/Hex"
-        android:textSize="48dp"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:textColor="@color/defaultGreyText"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundBackup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024999971" />
 
     <TextView
         android:id="@+id/gameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/gameTitle"
-        android:textSize="48dp"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="49dp" />
+        android:textColor="@color/defaultRedText"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.104000024" />
+
+    <TextView
+        android:id="@+id/modeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/classicDescriptionName"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scoreContainer" />
+
+    <TextView
+        android:id="@+id/modeDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/classicDescription"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/modeName"
+        app:layout_constraintTop_toBottomOf="@+id/scoreContainer" />
+
     <!-- Reference: https://stackoverflow.com/questions/6669764/scale-an-image-up-to-fill-entire-imageview-in-android -->
     <!--app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
