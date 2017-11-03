@@ -28,5 +28,6 @@
     <color name="defaultTile10">#EFC231</color>  <!-- 2048 -->
     <color name="defaultTile11">#EF656B</color>  <!-- 4096 -->
     <color name="defaultTile12">#EF4D5A</color>  <!-- 8192 -->
-    <color name="defaultTile13">#F74142</color>  <!-- 16384 and beyond. Actually 32768 might be a different color -->
+    <color name="defaultTile13">#F74142</color>  <!-- 16384 -->
+    <color name="defaultTile14">#73B6D6</color>  <!-- 32768 and beyond. Actually 65536 might be a different color -->
 </resources>
