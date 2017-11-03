@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     // Reference YouTube video: https://www.youtube.com/watch?v=-igAiudpBng
     static String TAG = "MainActivity";
 
+    static String colorScheme = "default";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

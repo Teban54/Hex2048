@@ -3,4 +3,28 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Reference: https://stackoverflow.com/questions/7378636/setting-background-colour-of-android-layout-element -->
+    <color name="defaultBackground">#FBF8EF</color>
+    <color name="defaultGreyText">#776E67</color>  <!-- Title, mode description, tiles 2 & 4 -->
+    <color name="defaultLightGreyText">#F1E5D7</color>  <!-- "Score" in score box -->
+    <color name="defaultWhiteText">#FFFFFF</color>  <!-- Scores, tiles except 2 & 4 -->
+    <color name="defaultBlackText">#776F64</color>  <!-- Tiles 2 & 4 -->
+    <color name="defaultOrangeText">#FF7E00</color>  <!-- Restart & undo buttons -->
+    <color name="defaultRedText">#F75D3A</color>  <!-- "2048" in title -->
+    <color name="defaultScoreBox">#BCAC9F</color>
+    <color name="defaultGridBorder">#B9AD9F</color>
+    <color name="defaultEmptyGrid">#CDC1B3</color>
+    <color name="defaultTile0">#EDE5D1</color>  <!-- 2 -->
+    <color name="defaultTile1">#EFE1C6</color>  <!-- 4 -->
+    <color name="defaultTile2">#F2B17B</color>  <!-- 8 -->
+    <color name="defaultTile3">#F69465</color>  <!-- 16 -->
+    <color name="defaultTile4">#F77D63</color>  <!-- 32 -->
+    <color name="defaultTile5">#F75D3A</color>  <!-- 64 -->
+    <color name="defaultTile6">#ECCD72</color>  <!-- 128 -->
+    <color name="defaultTile7">#EDCB60</color>  <!-- 256 -->
+    <color name="defaultTile8">#EFCA52</color>  <!-- 512 -->
+    <color name="defaultTile9">#EFC642</color>  <!-- 1024 -->
+    <color name="defaultTile10">#EFC231</color>  <!-- 2048 -->
+    <color name="defaultTile11">#EF656B</color>  <!-- 4096 and beyond. Actually 8192 might be a different color -->
 </resources>
